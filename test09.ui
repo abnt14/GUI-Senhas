@@ -1,0 +1,178 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<interface>
+	<object id="janela" class="GtkWindow">
+		<property name="title">Inserção de senha</property>
+		<property name="default-width">1200</property>
+		<property name="default-height">7200</property>
+
+		<child>
+			<object id="gridPrincipal" class="GtkGrid">
+				<property name="column_homogeneous">true</property>
+				<property name="row_homogeneous">true</property>
+				<property name="halign">center</property>
+				<property name="valign">center</property>
+
+				<child>
+					<object id="grid01" class="GtkGrid">
+						<property name="halign">center</property>
+						<property name="valign">center</property>
+						<property name="column_spacing">10</property>
+
+						<layout>
+							<property name="column">0</property>
+							<property name="row">0</property>
+						</layout>
+
+						<child>
+							<object id="textoDefinicaoSenha" class="GtkLabel">
+								<property name="label">Defina sua senha:</property>
+							</object>
+						</child>
+						<child>
+							<object id="scrolDefinicaoSenha" class="GtkScrolledWindow">
+								<child>
+									<object id="isrDefinicaoSenha" class="GtkTextView">
+									</object>
+								</child>
+							</object>
+						</child>
+						<child>
+							<object id="botaoDefinicaoSenha" class="GtkButton">
+								<property name="label">Definir</property>
+							</object>
+						</child>
+					</object>
+				</child>
+				<child>
+					<object id="grid02" class="GtkGrid">
+						<property name="halign">center</property>
+						<property name="valign">center</property>
+						<property name="column_spacing">10</property>
+
+						<layout>
+							<property name="column">0</property>
+							<property name="row">1</property>
+						</layout>
+
+						<child>
+							<object id="status" class="GtkLabel">
+								<property name="label">Status:</property>
+							</object>
+						</child>
+						<child>
+							<object id="scrol" class="GtkScrolledWindow">
+								<child>
+									<object id="isrTexto" class="GtkTextView">
+									</object>
+								</child>
+							</object>
+						</child>
+						<child>
+							<object id="gridTeclado" class="GtkGrid">
+								<property name="orientation">horizontal</property>
+								<property name="row_spacing">3</property>
+								<property name="column_spacing">3</property>
+
+								<child>
+									<object id="num1" class="GtkToggleButton">
+										<property name="label">1</property>
+									</object>
+								</child>
+								<child>
+									<object id="num2" class="GtkToggleButton">
+										<property name="label">2</property>
+									</object>
+								</child>
+								<child>
+									<object id="num3" class="GtkToggleButton">
+										<property name="label">3</property>
+									</object>
+								</child>
+								<child>
+									<object id="num4" class="GtkToggleButton">
+										<property name="label">4</property>
+
+										<layout>
+											<property name="column">0</property>
+											<property name="row">1</property>
+										</layout>
+									</object>
+								</child>
+								<child>
+									<object id="num5" class="GtkToggleButton">
+										<property name="label">5</property>
+
+										<layout>
+											<property name="column">1</property>
+											<property name="row">1</property>
+										</layout>
+									</object>
+								</child>
+								<child>
+									<object id="num6" class="GtkToggleButton">
+										<property name="label">6</property>
+
+										<layout>
+											<property name="column">2</property>
+											<property name="row">1</property>
+										</layout>
+									</object>
+								</child>
+								<child>
+									<object id="num7" class="GtkToggleButton">
+										<property name="label">7</property>
+
+										<layout>
+											<property name="column">0</property>
+											<property name="row">2</property>
+										</layout>
+									</object>
+								</child>
+								<child>
+									<object id="num8" class="GtkToggleButton">
+										<property name="label">8</property>
+
+										<layout>
+											<property name="column">1</property>
+											<property name="row">2</property>
+										</layout>
+									</object>
+								</child>
+								<child>
+									<object id="num9" class="GtkToggleButton">
+										<property name="label">9</property>
+
+										<layout>
+											<property name="column">2</property>
+											<property name="row">2</property>
+										</layout>
+									</object>
+								</child>
+								<child>
+									<object id="num0" class="GtkToggleButton">
+										<property name="label">0</property>
+
+										<layout>
+											<property name="column">1</property>
+											<property name="row">3</property>
+										</layout>
+									</object>
+								</child>
+								<child>
+									<object id="botaoEnviar" class="GtkButton">
+										<property name="label">Ok</property>
+
+										<layout>
+											<property name="column">1</property>
+											<property name="row">4</property>
+										</layout>
+									</object>
+								</child>
+							</object>
+						</child>
+					</object>
+				</child>
+			</object>
+		</child>
+	</object>
+</interface>
