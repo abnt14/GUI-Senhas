@@ -7,6 +7,8 @@ GtkBuilder *builder;
 GtkTextBuffer *bufferSenha;
 GtkTextBuffer *bufferDefinicaoSenha;
 GtkTextIter start,end;
+GtkWidget *dicaDefinicaoSenha;
+GtkWidget *dicaInsercaoSenha;
 GObject *inserirTexto;
 GObject *inserirDefinicaoSenha;
 GObject *janela;
@@ -14,13 +16,32 @@ GObject *botoes[10];
 GObject *status;
 GObject *botaoEnviar;
 GObject *botaoDefinicaoSenha;
-int valor, a;
+GObject *botaoApagar;
+int valor;
+int numBotao;
 int contador;
 char codigo01[100];
 char codigo02[100];
 gchar *codigoInserido;
 gchar *senhaDefinida;
 const char* textoStatus;
+
+void funcaoBotaoApagar(){
+	for(int n = 0; n <= 100; n++){
+		if(codigo01[n] == 0){
+			n--;
+
+			codigo01[n] = 0;
+			break;
+		}
+	}
+	gtk_text_buffer_set_text(bufferSenha, codigo01,-1);
+}
+
+void configuraToolTips(){
+	gtk_widget_set_tooltip_text(GTK_WIDGET(inserirDefinicaoSenha),"Digite uma senha que deseja usar");
+	gtk_widget_set_tooltip_text(GTK_WIDGET(inserirTexto),"Digite a senha que você criou");
+}
 
 void configuraView(){
 	inserirTexto = gtk_builder_get_object(builder,	"isrTexto");
@@ -57,6 +78,7 @@ void verificaSenha(){
 	if(senhaDefinida != 0){
 		if(strcmp(codigoInserido,senhaDefinida) == 0){
 			gtk_label_set_text(GTK_LABEL(status), "Status: Senha correta!");
+			limpaTextView();
 		}
 
 		else{
@@ -74,15 +96,14 @@ void configuraViewDefinicaoSenha(){
 void funcaoBotoes(){
 	textoStatus = gtk_label_get_text(GTK_LABEL(status));
 
-	if(strcmp(textoStatus, "Status: Senha correta!") != 0){
-		for(int i = 0; i<=9;i++){
-			if(gtk_toggle_button_get_active(GTK_TOGGLE_BUTTON(botoes[i]))){
-				valor = i;
-				atualizaTextView();
-				gtk_toggle_button_set_active(GTK_TOGGLE_BUTTON(botoes[i]), false);
+	for(int i=0; i<=9;i++){
+		if(gtk_toggle_button_get_active(GTK_TOGGLE_BUTTON(botoes[i]))){
+			valor = i;
+			numBotao = i;
+			atualizaTextView();
+			gtk_toggle_button_set_active(GTK_TOGGLE_BUTTON(botoes[i]), false);
 			}
 		}
-	}
 }
 
 void ativaBotoes(){
@@ -132,6 +153,9 @@ void iniciaWidgetsNecessarios(){
 
 	botaoDefinicaoSenha = gtk_builder_get_object(builder, "botaoDefinicaoSenha");
 	g_signal_connect(botaoDefinicaoSenha, "clicked", G_CALLBACK(funcaoBotaoDefinicaoSenha), NULL);
+
+	botaoApagar = gtk_builder_get_object(builder, "botaoApagar");
+	g_signal_connect(botaoApagar, "clicked", G_CALLBACK(funcaoBotaoApagar), NULL);
 }
 
 void criaJanela(){
@@ -139,6 +163,7 @@ void criaJanela(){
 	configuraView();
 	ativaBotoes();
 	iniciaWidgetsNecessarios();
+	configuraToolTips();
 
 	janela = gtk_builder_get_object(builder, "janela");
 	gtk_window_set_application(GTK_WINDOW(janela), app);
